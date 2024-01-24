@@ -29,6 +29,11 @@
                                         <input type="checkbox" name="remember"> Remember Me
                                     </label>
                                 </div>
+                                <div class="checkbox">
+                                      <label>
+                                          <a href="{{ route('forget.password.get') }}">Reset Password</a>
+                                      </label>
+                                </div>
                             </div>
                             <div class="d-grid mx-auto">
                                 <button type="submit" class="btn btn-dark btn-block">Signin</button>
