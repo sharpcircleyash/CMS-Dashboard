@@ -1,7 +1,12 @@
 <?php
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CustomAuthController;
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\{
+    ProfileController,
+    AboutUsPageContentController,
+    BannerController,
+    HomePageContentController
+};
 
 /*
 |--------------------------------------------------------------------------
@@ -23,5 +28,9 @@ Route::group(['middleware' => 'auth'],function(){
     Route::get('profile',[ProfileController::class,'index'])->name('profile');
     Route::put('profile/password-update',[ProfileController::class,'passwordUpdate'])->name('profile.password-update');
     Route::put('profile/update',[ProfileController::class,'update'])->name('profile.update');
+
+    Route::resource('banner',BannerController::class);
+    Route::resource('home-content',HomePageContentController::class);
+    Route::resource('about-us-content',AboutUsPageContentController::class);
 
 });
