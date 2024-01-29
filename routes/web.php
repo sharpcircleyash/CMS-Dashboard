@@ -1,6 +1,13 @@
 <?php
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CustomAuthController;
+
+use App\Http\Controllers\{
+    ProfileController,
+    AboutUsPageContentController,
+    BannerController,
+    HomePageContentController
+};
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ForgotPasswordController;
 
@@ -25,6 +32,11 @@ Route::group(['middleware' => 'auth'],function(){
     Route::put('profile/password-update',[ProfileController::class,'passwordUpdate'])->name('profile.password-update');
     Route::put('profile/update',[ProfileController::class,'update'])->name('profile.update');
 
+    Route::resource('banner',BannerController::class);
+    Route::resource('home-content',HomePageContentController::class);
+    Route::resource('about-us-content',AboutUsPageContentController::class);
+
+});
 });
 
 
@@ -33,3 +45,4 @@ Route::get('forget-password', [ForgotPasswordController::class, 'showForgetPassw
 Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post'); 
 Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
 Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
+
