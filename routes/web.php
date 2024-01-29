@@ -1,6 +1,12 @@
 <?php
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CustomAuthController;
+use App\Http\Controllers\{
+    ProfileController,
+    AboutUsPageContentController,
+    BannerController,
+    HomePageContentController
+};
 
 use App\Http\Controllers\{
     ProfileController,
