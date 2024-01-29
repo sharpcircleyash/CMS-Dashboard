@@ -8,6 +8,16 @@ use App\Http\Controllers\{
     HomePageContentController
 };
 
+use App\Http\Controllers\{
+    ProfileController,
+    AboutUsPageContentController,
+    BannerController,
+    HomePageContentController,
+    ContactController
+};
+
+use App\Http\Controllers\ForgotPasswordController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,5 +42,14 @@ Route::group(['middleware' => 'auth'],function(){
     Route::resource('banner',BannerController::class);
     Route::resource('home-content',HomePageContentController::class);
     Route::resource('about-us-content',AboutUsPageContentController::class);
+    Route::resource('contact',ContactController::class);
 
 });
+
+
+
+Route::get('forget-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->name('forget.password.get');
+Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post'); 
+Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
+Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
+

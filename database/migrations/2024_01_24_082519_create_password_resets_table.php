@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('home_page_contents', function (Blueprint $table) {
+        Schema::create('password_resets', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->text('description');
+            $table->string('email')->index();
+            $table->string('token')->index();
             $table->timestamps();
         });
     }
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('home_page_contents');
+        Schema::dropIfExists('password_resets');
     }
 };
