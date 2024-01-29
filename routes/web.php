@@ -1,12 +1,15 @@
 <?php
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CustomAuthController;
+
 use App\Http\Controllers\{
     ProfileController,
     AboutUsPageContentController,
     BannerController,
     HomePageContentController
 };
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ForgotPasswordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,3 +37,12 @@ Route::group(['middleware' => 'auth'],function(){
     Route::resource('about-us-content',AboutUsPageContentController::class);
 
 });
+});
+
+
+
+Route::get('forget-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->name('forget.password.get');
+Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post'); 
+Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
+Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
+
