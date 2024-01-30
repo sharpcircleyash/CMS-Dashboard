@@ -30,9 +30,9 @@ class ProfileController extends Controller
     public function passwordUpdate(Request $request)
     {
         $request->validate([
-            'old_password' => ['required','current_password'],
-            'new_password' => ['required','confirmed'],
-        ],[
+            'old_password' => ['required', 'current_password'],
+            'new_password' => ['required', 'confirmed'],
+        ], [
             "old_password.current_password" => "The old password field does not match with the current password !",
         ]);
         $new_pwd = Hash::make($request->new_password);
@@ -65,8 +65,8 @@ class ProfileController extends Controller
     public function update(Request $request)
     {
         $request->validate([
-            'password' => ['required','current_password'],
-            'name' => ['required','min:3'],
+            'password' => ['required', 'current_password'],
+            'name' => ['required', 'min:3'],
         ]);
         auth()->user()->update([
             "name" => $request->name

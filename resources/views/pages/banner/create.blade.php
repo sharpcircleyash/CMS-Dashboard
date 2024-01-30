@@ -15,8 +15,21 @@
     @endif
     <div class="col-md-8">
         <div class="card">
-            <div class="card-header"><strong>New Banner</strong></div>
+            <div class="card-header"><strong>Banners</strong></div>
             <div class="card-body">
+            <div class="container mt-2">
+    <div class="row">
+        <div class="col-md-12">
+           
+            <form action="{{ route('banner.store') }}" method="post" enctype="multipart/form-data" id="image-upload" class="dropzone">
+                @csrf
+                <div>
+                    <h3 style="text-align: center;">Upload Image By Click On Box</h3>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
             </div>
         </div>
     </div>

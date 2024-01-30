@@ -12,7 +12,8 @@ class AboutUsPageContentController extends Controller
      */
     public function index()
     {
-        return view('pages.about-us-content.index');
+        $aboutContent = AboutUsPageContent::find(1);
+        return view('pages.about-us-content.index', compact('aboutContent'));
     }
 
     /**
@@ -52,7 +53,13 @@ class AboutUsPageContentController extends Controller
      */
     public function update(Request $request, AboutUsPageContent $aboutUsPageContent)
     {
-        //
+
+        $aboutContent = AboutUsPageContent::find($request->about_us_content);
+        $aboutContent->title = $request->input('title');
+        $aboutContent->description = $request->input('description');
+        $aboutContent->save();
+
+        return redirect()->back()->withSuccess('AboutUs Page Content has been updated successfully.');
     }
 
     /**
