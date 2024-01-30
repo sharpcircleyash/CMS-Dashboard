@@ -5,13 +5,6 @@ use App\Http\Controllers\{
     ProfileController,
     AboutUsPageContentController,
     BannerController,
-    HomePageContentController
-};
-
-use App\Http\Controllers\{
-    ProfileController,
-    AboutUsPageContentController,
-    BannerController,
     HomePageContentController,
     ContactController
 };
