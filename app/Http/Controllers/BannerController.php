@@ -12,7 +12,8 @@ class BannerController extends Controller
      */
     public function index()
     {
-        return view('pages.banner.index');
+        $bannerContent = Banner::first();
+        return view('pages.banner.index', compact('bannerContent'));
     }
 
     /**
@@ -44,7 +45,7 @@ class BannerController extends Controller
      */
     public function edit(Banner $banner)
     {
-        return view('pages.banner.edit',['banner' => $banner]);
+        return view('pages.banner.edit', ['banner' => $banner]);
     }
 
     /**
@@ -52,7 +53,17 @@ class BannerController extends Controller
      */
     public function update(Request $request, Banner $banner)
     {
-        //
+        $image = $request->file('file');
+
+        $imageName = time() . '.' . $image->extension();
+        $image->move(public_path('images'), $imageName);
+
+        $bannerContent = Banner::find(1);
+        $bannerContent->src = $imageName;
+        $bannerContent->save();
+
+        $bannerContent = Banner::first();
+        return view('pages.banner.index', compact('bannerContent'))->withSuccess('Banner has been updated successfully.');
     }
 
     /**

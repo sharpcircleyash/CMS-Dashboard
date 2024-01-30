@@ -27,23 +27,23 @@ Route::get('register', [CustomAuthController::class, 'registration'])->name('reg
 Route::post('custom-registration', [CustomAuthController::class, 'customRegistration'])->name('register.custom');
 Route::get('signout', [CustomAuthController::class, 'signOut'])->name('signout');
 
-Route::group(['middleware' => 'auth'],function(){
+Route::group(['middleware' => 'auth'], function () {
     Route::get('dashboard', [CustomAuthController::class, 'dashboard'])->name('dashboard');
-    Route::get('profile',[ProfileController::class,'index'])->name('profile');
-    Route::put('profile/password-update',[ProfileController::class,'passwordUpdate'])->name('profile.password-update');
-    Route::put('profile/update',[ProfileController::class,'update'])->name('profile.update');
+    Route::get('profile', [ProfileController::class, 'index'])->name('profile');
+    Route::put('profile/password-update', [ProfileController::class, 'passwordUpdate'])->name('profile.password-update');
+    Route::put('profile/update', [ProfileController::class, 'update'])->name('profile.update');
 
-    Route::resource('banner',BannerController::class);
-    Route::resource('home-content',HomePageContentController::class);
-    Route::resource('about-us-content',AboutUsPageContentController::class);
-    Route::resource('contact',ContactController::class);
+    Route::resource('banner', BannerController::class);
+    Route::resource('home-content', HomePageContentController::class);
+    Route::resource('about-us-content', AboutUsPageContentController::class);
+    Route::resource('contact', ContactController::class);
 
 });
 
 
 
 Route::get('forget-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->name('forget.password.get');
-Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post'); 
+Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post');
 Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
 Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
 

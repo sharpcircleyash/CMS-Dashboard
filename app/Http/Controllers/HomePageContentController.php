@@ -12,7 +12,8 @@ class HomePageContentController extends Controller
      */
     public function index()
     {
-        return view('pages.home-page-content.index');
+        $homeContent = HomePageContent::find(1);
+        return view('pages.home-page-content.index', compact('homeContent'));
     }
 
     /**
@@ -52,7 +53,17 @@ class HomePageContentController extends Controller
      */
     public function update(Request $request, HomePageContent $homePageContent)
     {
-        //
+        // $request->validate([
+        //     'title' => ['required'],
+        //     'description' => ['required','min:3'],
+        // ]);
+
+        $homeContent = HomePageContent::find($request->home_content);
+        $homeContent->title = $request->input('title');
+        $homeContent->description = $request->input('description');
+        $homeContent->save();
+
+        return redirect()->back()->withSuccess('Home Page Content has been updated successfully.');
     }
 
     /**

@@ -12,7 +12,8 @@ class ContactController extends Controller
      */
     public function index()
     {
-        //
+        $list_data = Contact::get();
+        return view('pages.contact.index', compact('list_data'));
     }
 
     /**
@@ -60,6 +61,10 @@ class ContactController extends Controller
      */
     public function destroy(Contact $contact)
     {
-        //
+        //    dd($contact->id);
+        $contactData = Contact::find($contact->id)->delete();
+        // $contactData->delete();
+        return redirect()->back()->withSuccess('Contact Record has been Deleted successfully.');
+
     }
 }
