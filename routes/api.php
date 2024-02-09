@@ -2,6 +2,12 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\API\{
+    HomeController,
+    AboutUsController,
+    BannerController,
+    ContactUsController
+};
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +23,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::get('home',[HomeController::class,'index']);
+Route::get('about-us',[AboutUsController::class,'index']);
+Route::get('banners',[BannerController::class,'index']);
+Route::post('contact-us',[ContactUsController::class,'index']);
